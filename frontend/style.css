@@ -1,0 +1,143 @@
+/* Resetando o estilo padrão */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Corpo da página */
+body {
+  background-color: #1e1e1e;  /* Cor de fundo escura, estilo rock */
+  color: #fff;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  font-size: 16px;
+  flex-direction: column;
+  background-image: url('https://www.transparenttextures.com/patterns/rocky-wall.png'); /* Adicionando uma textura de fundo */
+  background-size: cover;
+  background-position: center;
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 3rem;
+  color: #f39c12;  /* Cor dourada para destacar o título */
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);  /* Sombras para dar um efeito dramático */
+}
+
+header p {
+  color: #bdc3c7;
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Seção de input */
+.input-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.input-section label {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #f39c12;
+  font-weight: bold;
+}
+
+.input-section input {
+  padding: 12px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+  border: 2px solid #f39c12;  /* Cor dourada para o input */
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.input-section input:focus {
+  border-color: #e67e22;  /* Laranja mais escuro para foco */
+}
+
+.input-section button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #e67e22;  /* Laranja escuro */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  max-width: 400px;
+}
+
+.input-section button:hover {
+  background-color: #f39c12;  /* Dourado no hover */
+}
+
+/* Container do setlist */
+#setlist-container {
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+}
+
+#setlist-container h2 {
+  font-size: 2rem;
+  color: #f39c12;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+#setlist-container ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#setlist-container li {
+  background-color: #333;  /* Cor mais escura para os itens */
+  padding: 10px 20px;
+  border: 1px solid #444;  /* Borda mais sutil */
+  border-radius: 6px;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  color: #f39c12;  /* Cor dourada para o texto */
+  transition: background-color 0.3s;
+}
+
+#setlist-container li:hover {
+  background-color: #555;  /* Efeito de hover */
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 50px;
+  color: #bdc3c7;
+}
+
+footer p {
+  font-size: 1rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
