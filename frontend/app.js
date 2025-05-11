@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     try {
-      // Corrigido: URL com o protocolo (https://) e o caminho correto para o backend
       const response = await fetch(`https://setlist-predictor-production.up.railway.app/setlist/${encodeURIComponent(artist)}`);
       if (!response.ok) throw new Error('Erro ao buscar setlist');
 
