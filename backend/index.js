@@ -15,7 +15,7 @@ const getRecentSetlists = async (artist) => {
       headers: {
         'x-api-key': process.env.SETLIST_API_KEY,
         'Accept': 'application/json',
-        'User-Agent': 'SetlistPredictor/1.0 (seuemail@exemplo.com)',
+        'User-Agent': 'SetlistPredictor/1.0',
       },
       params: {
         artistName: artist,
