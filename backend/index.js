@@ -15,20 +15,20 @@ const getRecentSetlists = async (artist) => {
       headers: {
         'x-api-key': process.env.SETLIST_API_KEY,
         'Accept': 'application/json',
-        'User-Agent': 'SetlistPredictor/1.0 (seuemail@exemplo.com)', // Altere para seu email ou um contato válido
+        'User-Agent': 'SetlistPredictor/1.0 (seuemail@exemplo.com)',
       },
       params: {
         artistName: artist,
-        limit: 10, // Pegando os 10 últimos setlists
+        limit: 10,
       },
     });
 
-    console.log('Resposta da API:', JSON.stringify(response.data, null, 2)); // Exibe a resposta com formatação
+    console.log('Resposta da API:', JSON.stringify(response.data, null, 2));
 
-    return response.data.setlist || []; // Garantir que sempre retornamos um array vazio se não houver setlists
+    return response.data.setlist || [];
   } catch (error) {
     console.error('Erro ao buscar setlists:', error.response?.data || error.message);
-    return []; // Retorna um array vazio em caso de erro
+    return [];
   }
 };
 
@@ -37,19 +37,18 @@ const predictSetlist = async (artist) => {
   const recentSetlists = await getRecentSetlists(artist);
 
   if (recentSetlists.length === 0) {
-    return []; // Se não encontrar setlists, retorna um array vazio
+    return [];
   }
-
-  // Criando um objeto para contar a frequência de cada música
+  
   const songCounts = {};
   let totalSongs = 0;
 
-  // Criando uma lista de músicas ordenadas pela sequência dos shows
+// Array para armazenar as músicas em ordem
   const orderedSongs = [];
 
   // Iterando pelos últimos 10 setlists para contar as músicas
   recentSetlists.forEach(setlist => {
-    console.log('Setlist:', setlist); // Log para verificar o setlist
+    console.log('Setlist:', setlist); 
 
     // Verificando se o campo 'sets.set' existe e se é um array
     if (setlist.sets && Array.isArray(setlist.sets.set)) {
@@ -59,12 +58,9 @@ const predictSetlist = async (artist) => {
         if (set.song && Array.isArray(set.song)) {
           set.song.forEach(song => {
             if (song.name) {
-              // Adicionando a música à lista de músicas ordenadas
               if (!orderedSongs.includes(song.name)) {
                 orderedSongs.push(song.name);
               }
-
-              // Contabilizando a frequência da música
               songCounts[song.name] = (songCounts[song.name] || 0) + 1;
               totalSongs++;
             }
@@ -76,21 +72,20 @@ const predictSetlist = async (artist) => {
 
   // Calculando a média de músicas por show
   const avgSongsPerShow = totalSongs / recentSetlists.length;
-  console.log('Média de músicas por show:', avgSongsPerShow); // Log para verificar a média
+  console.log('Média de músicas por show:', avgSongsPerShow);
 
   // Selecionando o número de músicas baseadas na média calculada
-  const songsForSetlist = orderedSongs.slice(0, Math.round(avgSongsPerShow)); // Retorna as músicas em ordem com base na média
+  const songsForSetlist = orderedSongs.slice(0, Math.round(avgSongsPerShow));
 
-  return songsForSetlist; // Retorna as músicas mais tocadas em ordem
+  return songsForSetlist;
 };
 
-// Rota para pegar o setlist previsto para um artista
 app.get('/setlist/:artist', async (req, res) => {
   const artist = req.params.artist;
   const setlist = await predictSetlist(artist);
 
   if (setlist.length > 0) {
-    res.json(setlist); // Retorna o setlist com as músicas em ordem
+    res.json(setlist);
   } else {
     res.status(404).json({ error: 'Nenhum setlist encontrado ou erro ao buscar setlists.' });
   }
