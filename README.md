@@ -15,9 +15,6 @@
   <ul>
     <li>Curitiba</li>
     <li>São Paulo</li>
-    <li>Porto Alegre</li>
-    <li>Rio de Janeiro</li>
-    <li>Brasília</li>
   </ul>
 
   <h2>🚀 Funcionalidades</h2>
