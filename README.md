@@ -14,7 +14,7 @@
 <h2>🚀 Funcionalidades</h2>
 <ul>
   <li>Consulta de setlists passados da banda por meio da integração com a API do Setlist.fm</li>
-  <li>Análise de padrões de músicas tocadas por localização e por turnê</li>
+  <li>Análise de padrões de músicas que estão nos setlists</li>
   <li>Previsão do próximo setlist com base em dados históricos</li>
 </ul>
 
