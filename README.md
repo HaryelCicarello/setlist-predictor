@@ -8,7 +8,7 @@
 <h2>🔮 Sobre o Projeto</h2>
 <p>
   Este projeto utiliza <strong>análise preditiva</strong> baseada em setlists anteriores (via 
-  <a href="https://api.setlist.fm/docs/" target="_blank">API do Setlist.fm</a>) e dados da <strong>API do Spotify</strong> para prever quais músicas provavelmente estarão presentes em um show futuro.
+  <a href="https://api.setlist.fm/docs/" target="_blank">API do Setlist.fm</a>) para prever quais músicas provavelmente estarão presentes em um show futuro.
 </p>
 
 <h2>🚀 Funcionalidades</h2>
@@ -20,6 +20,8 @@
 
 <h2>🌎 Próximos Passos</h2>
 <ul>
+  <li>Tela de usuário para ver os setlists salvos</li>
+  <li>Integração com Spotify para criar uma playlist com o setlist previsto</li>
   <li>Sistema de pontuação para palpites acertados</li>
   <li>Área de perfil para que fãs acompanhem seus acertos</li>
   <li>Integração com redes sociais para compartilhamento de palpites</li>
