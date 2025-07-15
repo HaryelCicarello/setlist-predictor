@@ -32,4 +32,4 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   btnGetSetlist.addEventListener('click', fetchSetlist);
-});
+}); 
