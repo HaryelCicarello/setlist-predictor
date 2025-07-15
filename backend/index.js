@@ -4,12 +4,11 @@ const axios = require('axios');
 const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
-});
 
+// Middleware
 app.use(cors());
+
+const PORT = process.env.PORT || 3000;
 
 // Função para pegar os 10 últimos setlists
 const getRecentSetlists = async (artist) => {
@@ -27,7 +26,6 @@ const getRecentSetlists = async (artist) => {
     });
 
     console.log('Resposta da API:', JSON.stringify(response.data, null, 2));
-
     return response.data.setlist || [];
   } catch (error) {
     console.error('Erro ao buscar setlists:', error.response?.data || error.message);
@@ -39,25 +37,15 @@ const getRecentSetlists = async (artist) => {
 const predictSetlist = async (artist) => {
   const recentSetlists = await getRecentSetlists(artist);
 
-  if (recentSetlists.length === 0) {
-    return [];
-  }
-  
+  if (recentSetlists.length === 0) return [];
+
   const songCounts = {};
+  const orderedSongs = [];
   let totalSongs = 0;
 
-// Array para armazenar as músicas em ordem
-  const orderedSongs = [];
-
-  // Iterando pelos últimos 10 setlists para contar as músicas
   recentSetlists.forEach(setlist => {
-    console.log('Setlist:', setlist); 
-
-    // Verificando se o campo 'sets.set' existe e se é um array
     if (setlist.sets && Array.isArray(setlist.sets.set)) {
-      // Iterando sobre cada set dentro de 'sets.set'
       setlist.sets.set.forEach(set => {
-        // Cada set contém músicas em 'song'
         if (set.song && Array.isArray(set.song)) {
           set.song.forEach(song => {
             if (song.name) {
@@ -73,16 +61,13 @@ const predictSetlist = async (artist) => {
     }
   });
 
-  // Calculando a média de músicas por show
   const avgSongsPerShow = totalSongs / recentSetlists.length;
   console.log('Média de músicas por show:', avgSongsPerShow);
 
-  // Selecionando o número de músicas baseadas na média calculada
-  const songsForSetlist = orderedSongs.slice(0, Math.round(avgSongsPerShow));
-
-  return songsForSetlist;
+  return orderedSongs.slice(0, Math.round(avgSongsPerShow));
 };
 
+// Rota para retornar o setlist previsto
 app.get('/setlist/:artist', async (req, res) => {
   const artist = req.params.artist;
   const setlist = await predictSetlist(artist);
@@ -94,6 +79,7 @@ app.get('/setlist/:artist', async (req, res) => {
   }
 });
 
+// Inicia o servidor
 app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
